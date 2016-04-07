@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.jumper.dto.FacilityDto;
-import com.jumper.dto.UserDto;
 import com.jumper.entity.TFacility;
-import com.jumper.entity.TUser;
 import com.jumper.service.FacilityService;
 
 @Controller

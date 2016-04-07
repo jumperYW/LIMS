@@ -11,8 +11,6 @@ public interface UserService {
 	
 	TUser get(int id);
 	
-	TUser getToLogin(int id);
-	
 	List<TUser> findAll();
 	
 	void persist(TUser entity);

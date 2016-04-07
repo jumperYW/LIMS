@@ -48,20 +48,8 @@ public class UserServiceImpl implements UserService {
 		userDao.flush();
 	}
 
-	@Override
-	public TUser getToLogin(int id) {
-		TUser tuser = userDao.get(id);
-		TUser user = new TUser();
-		user.setId(tuser.getId());
-		user.setPassword(tuser.getPassword());
-		user.setAuthority(tuser.getAuthority());
-		return user;
-	}
-
-	@Override
 	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map) {
 		return userDao.findPageByCriteria(pageNo, pageSize, map);
 	}
-	
-	
+
 }

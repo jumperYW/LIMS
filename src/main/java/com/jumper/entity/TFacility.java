@@ -1,5 +1,5 @@
 package com.jumper.entity;
-// Generated 2016-4-7 16:37:47 by Hibernate Tools 3.4.0.CR1
+// Generated 2016-4-7 20:04:10 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -30,15 +30,15 @@ public class TFacility implements java.io.Serializable {
 	private String location;
 	private int state;
 	private String remark;
+	private byte[] image;
 	private Integer userId;
 	private String reserve;
-	private int facilityid;
 
 	public TFacility() {
 	}
 
 	public TFacility(String facid, String name, String productor, String director, Date buydate, long price,
-			String location, int state, int facilityid) {
+			String location, int state) {
 		this.facid = facid;
 		this.name = name;
 		this.productor = productor;
@@ -47,12 +47,11 @@ public class TFacility implements java.io.Serializable {
 		this.price = price;
 		this.location = location;
 		this.state = state;
-		this.facilityid = facilityid;
 	}
 
 	public TFacility(String facid, String name, String productor, String type, String director, Date buydate,
-			Integer num, long price, String location, int state, String remark, Integer userId, String reserve,
-			int facilityid) {
+			Integer num, long price, String location, int state, String remark, byte[] image, Integer userId,
+			String reserve) {
 		this.facid = facid;
 		this.name = name;
 		this.productor = productor;
@@ -64,9 +63,9 @@ public class TFacility implements java.io.Serializable {
 		this.location = location;
 		this.state = state;
 		this.remark = remark;
+		this.image = image;
 		this.userId = userId;
 		this.reserve = reserve;
-		this.facilityid = facilityid;
 	}
 
 	@Id
@@ -181,6 +180,15 @@ public class TFacility implements java.io.Serializable {
 		this.remark = remark;
 	}
 
+	@Column(name = "image")
+	public byte[] getImage() {
+		return this.image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	@Column(name = "user_id")
 	public Integer getUserId() {
 		return this.userId;
@@ -197,15 +205,6 @@ public class TFacility implements java.io.Serializable {
 
 	public void setReserve(String reserve) {
 		this.reserve = reserve;
-	}
-
-	@Column(name = "facilityid", nullable = false)
-	public int getFacilityid() {
-		return this.facilityid;
-	}
-
-	public void setFacilityid(int facilityid) {
-		this.facilityid = facilityid;
 	}
 
 }

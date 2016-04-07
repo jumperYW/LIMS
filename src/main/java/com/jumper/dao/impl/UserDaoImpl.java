@@ -62,7 +62,6 @@ public class UserDaoImpl implements UserDao {
 		this.getCurrentSession().flush();
 	}
 
-	@Override
 	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map) {
 		List<TUser> users = null;
 		

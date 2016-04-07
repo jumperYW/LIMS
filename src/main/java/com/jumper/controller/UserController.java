@@ -49,7 +49,7 @@ public class UserController {
 		TUser tuser = userService.get(id);
 		if(tuser!=null){
 			logger.info(id+"查询成功！"+JSON.toJSONString(tuser));
-			tuser.setPassword(""+id);
+			tuser.setPassword(""+tuser.getUserid());
 			userService.saveOrUpdate(tuser);
 			return "success";
 		}else{

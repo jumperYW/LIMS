@@ -6,20 +6,19 @@ import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.jumper.dao.UserDao;
+import com.jumper.dao.FacilityDao;
+import com.jumper.entity.TFacility;
 import com.jumper.entity.TUser;
 
+@Repository("faclityDao")
+public class FacilityDaoImpl implements FacilityDao{
 
-@Repository("userDao")
-public class UserDaoImpl implements UserDao {
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 	
@@ -27,45 +26,43 @@ public class UserDaoImpl implements UserDao {
 		return this.sessionFactory.getCurrentSession();
 	}
 	
-	
-	public TUser load(Integer id) {
-		return (TUser)this.getCurrentSession().load(TUser.class, id);
+	public TFacility load(Integer id) {
+		return (TFacility) this.getCurrentSession().load(TFacility.class,id);
 	}
 
-	public TUser get(Integer id) {
-		return (TUser)this.getCurrentSession().get(TUser.class, id);
+	public TFacility get(Integer id) {
+		return (TFacility) this.getCurrentSession().get(TFacility.class, id);
 	}
 
-	public List<TUser> findAll() {
-		List<TUser> tusers = this.getCurrentSession().createQuery("from TUser").list();
-		return tusers;
+	public List<TFacility> findAll() {
+		List<TFacility> faclities = this.getCurrentSession().createQuery(" from TFacility").list();
+		return faclities;
 	}
 
-	public void persist(TUser entity) {
+	public void persist(TFacility entity) {
 		this.getCurrentSession().persist(entity);
 	}
 
-	public Integer save(TUser entity) {
+	public Integer save(TFacility entity) {
 		return (Integer) this.getCurrentSession().save(entity);
 	}
 
-	public void saveOrUpdate(TUser entity) {
+	public void saveOrUpdate(TFacility entity) {
 		this.getCurrentSession().saveOrUpdate(entity);
 	}
 
 	public void delete(Integer id) {
-		TUser entity = this.load(id);
-		this.getCurrentSession().delete(entity);
+		this.delete(id);
 	}
 
 	public void flush() {
 		this.getCurrentSession().flush();
 	}
 
-	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map) {
-		List<TUser> users = null;
+	public List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+		List<TFacility> facilities = null;
 		try {
-			Criteria criteria = this.getCurrentSession().createCriteria(TUser.class);
+			Criteria criteria = this.getCurrentSession().createCriteria(TFacility.class);
 			if(map!=null){
 				Iterator it = map.keySet().iterator();
 				while(it.hasNext()){
@@ -76,12 +73,12 @@ public class UserDaoImpl implements UserDao {
 			criteria.setProjection(null);
 			criteria.setFirstResult((pageNo-1)*pageSize);
 			criteria.setMaxResults(pageSize);
-			users = criteria.list();
+			facilities = criteria.list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}
 		
-		return users;
+		return facilities;
 	}
 
 }

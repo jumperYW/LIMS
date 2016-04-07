@@ -94,10 +94,6 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<!-- Multiple annotations found at this line:
-	- cvc-complex-type.2.4.c: The matching wildcard is strict, but no declaration can be found for element 'tx:advice'.
-	- schema_reference.4: Failed to read schema document 'http://www.springframework.org/schema/tx/spring-tx-4.1.xsd', because 1) could not 
-	 find the document; 2) the document could not be read; 3) the root element of the document is not <xsd:schema>. -->
 	<!-- 配置事务增强处理Bean，指定事务管理器 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<!-- 配置详细事务处理语义 -->

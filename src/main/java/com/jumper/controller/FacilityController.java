@@ -64,15 +64,15 @@ public class FacilityController {
 	 * 查询用户显示相关
 	 * @param pageNo  当前页
 	 * @param pageSize  每页数量
-	 * @param facjson	查询条件
+	 * @param mapjson	查询条件
 	 * @return
 	 */
 	@RequestMapping("/getfacList")
 	@ResponseBody
-	public String getfacList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String facjson){
+	public String getfacList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
 		Map<String, String> map = null;
-		if(facjson != null){
-			map = (Map<String, String>) JSON.parse(facjson);
+		if(mapjson != null){
+			map = (Map<String, String>) JSON.parse(mapjson);
 		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));

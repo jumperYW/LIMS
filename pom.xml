@@ -92,11 +92,11 @@
 		</dependency>
 
 		<!-- 二级缓存ehcache -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<version>2.9.0</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- log4j -->
 		<dependency>
@@ -220,8 +220,6 @@
 	         
 			</plugin>
 	
-			<!-- 部署至本机 -->
-			
 		</plugins>
     
   </build>

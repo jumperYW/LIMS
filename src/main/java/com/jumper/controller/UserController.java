@@ -66,7 +66,6 @@ public class UserController {
 	@RequestMapping("/createUser")
 	@ResponseBody
 	public String createUser(@RequestParam String userjson){
-		System.out.println(userjson);
 		TUser tuser = JSON.parseObject(userjson, TUser.class);
 		try {
 			tuser.setCreatetime(new Date());
@@ -75,6 +74,25 @@ public class UserController {
 			return "success";
 		} catch (Exception e) {
 			logger.error("创建新用户失败！id="+tuser.getId(),e);
+			return "failed";
+		}
+	}
+	
+	/**
+	 * 更新用户信息
+	 * @param userjson
+	 * @return
+	 */
+	@RequestMapping("/updateUser")
+	@ResponseBody
+	public String updateUser(@RequestParam String userjson){
+		TUser tuser = JSON.parseObject(userjson, TUser.class);
+		try {
+			userService.update(tuser);
+			logger.info("更新用户成功！id="+tuser.getId());
+			return "success";
+		} catch (Exception e) {
+			logger.error("更新用户失败！id="+tuser.getId(),e);
 			return "failed";
 		}
 	}

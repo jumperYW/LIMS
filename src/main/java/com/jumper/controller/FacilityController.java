@@ -58,7 +58,11 @@ public class FacilityController {
 		}
 	}
 	
-	
+	/**
+	 * 修改设备信息
+	 * @param facjson
+	 * @return
+	 */
 	@RequestMapping("/changeFac")
 	@ResponseBody
 	public String changeFac(@RequestParam String facjson){

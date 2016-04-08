@@ -53,6 +53,10 @@ public class UserDaoImpl implements UserDao {
 		this.getCurrentSession().saveOrUpdate(entity);
 	}
 
+	public void update(TUser entity) {
+		this.getCurrentSession().update(entity);
+	}
+	
 	public void delete(Integer id) {
 		TUser entity = this.load(id);
 		this.getCurrentSession().delete(entity);

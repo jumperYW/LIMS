@@ -40,6 +40,10 @@ public class UserServiceImpl implements UserService {
 		userDao.saveOrUpdate(entity);
 	}
 
+	public void update(TUser entity){
+		userDao.update(entity);
+	}
+	
 	public void delete(int id) {
 		userDao.delete(id);
 	}

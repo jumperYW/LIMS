@@ -58,6 +58,22 @@ public class FacilityController {
 		}
 	}
 	
+	
+	@RequestMapping("/changeFac")
+	@ResponseBody
+	public String changeFac(@RequestParam String facjson){
+		
+		TFacility fac = JSON.parseObject(facjson,TFacility.class);
+		try{
+			facilityService.update(fac);
+			logger.info("更新成功！facid="+fac.getFacid());
+			return "success";
+		} catch(Exception e){
+			logger.error("更新失败！facid="+fac.getFacid(),e);
+			return "failed";
+		}
+	}
+	
 	/**
 	 * 查询用户显示相关
 	 * @param pageNo  当前页
@@ -65,12 +81,12 @@ public class FacilityController {
 	 * @param mapjson	查询条件
 	 * @return
 	 */
-	@RequestMapping("/getfacList")
+	@RequestMapping("/getFacList")
 	@ResponseBody
-	public String getfacList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
+	public String getFacList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
 		Map<String, String> map = null;
 		if(mapjson != null){
-			map = (Map<String, String>) JSON.parse(mapjson);
+			map = JSON.parseObject(mapjson,Map.class);
 		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));

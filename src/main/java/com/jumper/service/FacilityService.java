@@ -19,6 +19,8 @@ public interface FacilityService {
 	
 	void saveOrUpdate(TFacility entity);
 	
+	void update(TFacility entity);
+	
 	void delete(int id);
 	
 	void flush();

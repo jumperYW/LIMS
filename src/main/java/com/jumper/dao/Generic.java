@@ -3,6 +3,8 @@ package com.jumper.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.jumper.entity.TFacility;
+
 public interface Generic <T,P> {
 
 	T load(P id);
@@ -16,6 +18,8 @@ public interface Generic <T,P> {
 	P save(T entity);
 	
 	void saveOrUpdate(T entity);
+	
+	void update(T entity);
 	
 	void delete(P id);
 	

@@ -40,6 +40,10 @@ public class FacilityServiceImpl implements FacilityService{
 		facDao.saveOrUpdate(entity);
 	}
 
+	public void update(TFacility entity){
+		facDao.update(entity);
+	}
+	
 	public void delete(int id) {
 		facDao.delete(id);
 	}

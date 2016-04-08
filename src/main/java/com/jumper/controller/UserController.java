@@ -78,6 +78,7 @@ public class UserController {
 			return "failed";
 		}
 	}
+	
 	/**
 	 * 查询用户显示相关
 	 * @param pageNo  当前页
@@ -90,7 +91,7 @@ public class UserController {
 	public String getuserList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
 		Map<String, String> map = null;
 		if(mapjson != null){
-			map = (Map<String, String>) JSON.parse(mapjson);
+			map = JSON.parseObject(mapjson,Map.class);
 		}
 		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TUsers:"+JSON.toJSONString(users));

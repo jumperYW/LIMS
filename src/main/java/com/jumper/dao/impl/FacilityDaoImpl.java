@@ -51,6 +51,10 @@ public class FacilityDaoImpl implements FacilityDao{
 		this.getCurrentSession().saveOrUpdate(entity);
 	}
 
+	public void update(TFacility entity) {
+		this.getCurrentSession().update(entity);
+	}
+	
 	public void delete(Integer id) {
 		this.delete(id);
 	}

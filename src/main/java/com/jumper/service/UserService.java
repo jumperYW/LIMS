@@ -19,6 +19,8 @@ public interface UserService {
 	
 	void saveOrUpdate(TUser entity);
 	
+	void update(TUser entity);
+	
 	void delete(int id);
 	
 	void flush();

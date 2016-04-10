@@ -63,9 +63,9 @@ public class FacilityController {
 	 * @param facjson
 	 * @return
 	 */
-	@RequestMapping("/changeFac")
+	@RequestMapping("//updateFac")
 	@ResponseBody
-	public String changeFac(@RequestParam String facjson){
+	public String updateFac(@RequestParam String facjson){
 		
 		TFacility fac = JSON.parseObject(facjson,TFacility.class);
 		try{
@@ -79,7 +79,7 @@ public class FacilityController {
 	}
 	
 	/**
-	 * 查询用户显示相关
+	 * 查询设备显示相关
 	 * @param pageNo  当前页
 	 * @param pageSize  每页数量
 	 * @param mapjson	查询条件

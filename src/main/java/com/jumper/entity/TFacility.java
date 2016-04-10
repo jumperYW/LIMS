@@ -31,7 +31,7 @@ public class TFacility implements java.io.Serializable {
 	private int state;
 	private String remark;
 	private byte[] image;
-	private Integer userId;
+	private String userId;
 	private String reserve;
 
 	public TFacility() {
@@ -50,7 +50,7 @@ public class TFacility implements java.io.Serializable {
 	}
 
 	public TFacility(String facid, String name, String productor, String type, String director, Date buydate,
-			Integer num, long price, String location, int state, String remark, byte[] image, Integer userId,
+			Integer num, long price, String location, int state, String remark, byte[] image, String userId,
 			String reserve) {
 		this.facid = facid;
 		this.name = name;
@@ -190,11 +190,11 @@ public class TFacility implements java.io.Serializable {
 	}
 
 	@Column(name = "user_id")
-	public Integer getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

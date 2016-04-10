@@ -63,7 +63,7 @@ public class FacilityController {
 	 * @param facjson
 	 * @return
 	 */
-	@RequestMapping("//updateFac")
+	@RequestMapping("/updateFac")
 	@ResponseBody
 	public String updateFac(@RequestParam String facjson){
 		

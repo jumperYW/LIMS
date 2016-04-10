@@ -104,7 +104,7 @@ public class UserController {
 	 * @param mapjson	查询条件
 	 * @return
 	 */
-	@RequestMapping("/getuserList")
+	@RequestMapping("/getUserList")
 	@ResponseBody
 	public String getuserList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
 		Map<String, String> map = null;

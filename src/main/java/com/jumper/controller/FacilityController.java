@@ -67,7 +67,7 @@ public class FacilityController {
 	@RequestMapping("/updateFac")
 	@ResponseBody
 	public String updateFac(@RequestParam String facjson){
-		
+		logger.info("修改设备信息facjson:"+facjson);
 		TFacility fac = JSON.parseObject(facjson,TFacility.class);
 		try{
 			facilityService.update(fac);
@@ -75,6 +75,20 @@ public class FacilityController {
 			return "success";
 		} catch(Exception e){
 			logger.error("更新失败！facid="+fac.getFacid(),e);
+			return "failed";
+		}
+	}
+	
+	@RequestMapping("/deleteFac")
+	@ResponseBody
+	public String deleteFac(@RequestParam int id){
+		logger.info("删除设备,id="+id);
+		try{
+			facilityService.delete(id);
+			logger.info("删除成功：id="+id);
+			return "success";
+		} catch(Exception e){
+			logger.error("删除失败：id="+id,e);
 			return "failed";
 		}
 	}

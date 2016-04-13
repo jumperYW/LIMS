@@ -56,7 +56,8 @@ public class FacilityDaoImpl implements FacilityDao{
 	}
 	
 	public void delete(Integer id) {
-		this.delete(id);
+		TFacility facility = this.load(id);
+		this.getCurrentSession().delete(facility);
 	}
 
 	public void flush() {

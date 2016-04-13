@@ -46,6 +46,7 @@ public class FacilityController {
 	@RequestMapping("/createFacility")
 	@ResponseBody
 	public String createFacility(@RequestParam String facjson){
+		logger.info("创建新设备：facjson:"+facjson);
 		TFacility facility = JSON.parseObject(facjson, TFacility.class);
 		try {
 			facility.setBuydate(new Date());

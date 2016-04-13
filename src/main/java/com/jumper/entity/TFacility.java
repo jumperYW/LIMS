@@ -98,7 +98,7 @@ public class TFacility implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "productor", nullable = false)
+	@Column(name = "productor")
 	public String getProductor() {
 		return this.productor;
 	}
@@ -126,7 +126,7 @@ public class TFacility implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "buydate", nullable = false, length = 19)
+	@Column(name = "buydate", length = 19)
 	public Date getBuydate() {
 		return this.buydate;
 	}
@@ -144,7 +144,7 @@ public class TFacility implements java.io.Serializable {
 		this.num = num;
 	}
 
-	@Column(name = "price", nullable = false, precision = 10, scale = 0)
+	@Column(name = "price", precision = 10, scale = 0)
 	public long getPrice() {
 		return this.price;
 	}
@@ -162,7 +162,7 @@ public class TFacility implements java.io.Serializable {
 		this.location = location;
 	}
 
-	@Column(name = "state", nullable = false)
+	@Column(name = "state")
 	public int getState() {
 		return this.state;
 	}

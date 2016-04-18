@@ -26,7 +26,7 @@ public class TFacility implements java.io.Serializable {
 	private String director;
 	private Date buydate;
 	private Integer num;
-	private long price;
+	private double price;
 	private String location;
 	private int state;
 	private String remark;
@@ -37,7 +37,7 @@ public class TFacility implements java.io.Serializable {
 	public TFacility() {
 	}
 
-	public TFacility(String facid, String name, String productor, String director, Date buydate, long price,
+	public TFacility(String facid, String name, String productor, String director, Date buydate, double price,
 			String location, int state) {
 		this.facid = facid;
 		this.name = name;
@@ -50,7 +50,7 @@ public class TFacility implements java.io.Serializable {
 	}
 
 	public TFacility(String facid, String name, String productor, String type, String director, Date buydate,
-			Integer num, long price, String location, int state, String remark, byte[] image, String userId,
+			Integer num, double price, String location, int state, String remark, byte[] image, String userId,
 			String reserve) {
 		this.facid = facid;
 		this.name = name;
@@ -145,11 +145,11 @@ public class TFacility implements java.io.Serializable {
 	}
 
 	@Column(name = "price", precision = 10, scale = 0)
-	public long getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(long price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

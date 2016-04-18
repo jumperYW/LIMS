@@ -109,14 +109,13 @@ public class FacilityController {
 		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));
-		List<FacilityDto> facDtos = new ArrayList<FacilityDto>();
-		FacilityDto facDto;
+		List<TFacility> facs = new ArrayList<TFacility>();
 		for(TFacility facility : facilies){
-			facDto = getDtoFromFacility(facility);
-			facDtos.add(facDto);
+			//facDto = getDtoFromFacility(facility);
+			facs.add(facility);
 		}
-		logger.info("UserDtos:"+JSON.toJSONString(facDtos));
-		return JSON.toJSONString(facDtos);
+		logger.info("Facs:"+JSON.toJSONString(facs));
+		return JSON.toJSONString(facs);
 	}
 	
 	/**

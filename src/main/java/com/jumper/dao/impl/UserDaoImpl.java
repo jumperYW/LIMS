@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 				while(it.hasNext()){
 					String key = (String)it.next();
 					if(key.equals("authority")){
-						criteria.add(Restrictions.like(key, map.get(key)));
+						criteria.add(Restrictions.eq(key, map.get(key)));
 					}else{
 						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
 					}

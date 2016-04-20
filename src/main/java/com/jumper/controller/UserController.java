@@ -111,13 +111,17 @@ public class UserController {
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
+		int authority = Integer.parseInt(map.get("authority"));
+		map.remove("authority");
 		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TUsers:"+JSON.toJSONString(users));
 		List<UserDto> userDtos = new ArrayList<UserDto>();
 		UserDto userDto;
 		for(TUser user : users){
-			userDto = getDtoFromUser(user);
-			userDtos.add(userDto);
+			if(authority==0||user.getAuthority()==authority){
+				userDto = getDtoFromUser(user);
+				userDtos.add(userDto);
+			}
 		}
 		logger.info("UserDtos:"+JSON.toJSONString(userDtos));
 		return JSON.toJSONString(userDtos);

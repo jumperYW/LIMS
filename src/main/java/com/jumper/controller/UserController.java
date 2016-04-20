@@ -111,8 +111,9 @@ public class UserController {
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
-//		int authority = Integer.parseInt(map.get("authority"));
-//		map.remove("authority");
+		if("0".equals(map.get("authority"))){
+			map.remove("authority");
+		}
 		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TUsers:"+JSON.toJSONString(users));
 //		List<UserDto> userDtos = new ArrayList<UserDto>();

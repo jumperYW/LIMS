@@ -107,8 +107,9 @@ public class FacilityController {
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
-//		int state = Integer.parseInt(map.get("state"));
-//		map.remove("state");
+		if("0".equals(map.get("state"))){
+			map.remove("state");
+		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));
 		List<TFacility> facs = new ArrayList<TFacility>();

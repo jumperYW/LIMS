@@ -114,7 +114,7 @@ public class FacilityController {
 		List<TFacility> facs = new ArrayList<TFacility>();
 		for(TFacility facility : facilies){
 			//facDto = getDtoFromFacility(facility);
-			if(facility.getState()==state)
+			if(state==0||facility.getState()==state)
 				facs.add(facility);
 		}
 		logger.info("Facs:"+JSON.toJSONString(facs));

@@ -73,7 +73,7 @@ public class FacilityDaoImpl implements FacilityDao{
 				while(it.hasNext()){
 					String key = (String)it.next();
 					if(key.equals("state")){
-						criteria.add(Restrictions.eq(key, map.get(key)));
+						criteria.add(Restrictions.eq(key, Integer.parseInt(map.get(key))));
 					}else{
 						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
 					}

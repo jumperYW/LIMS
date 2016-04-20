@@ -107,14 +107,14 @@ public class FacilityController {
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
-		int state = Integer.parseInt(map.get("state"));
-		map.remove("state");
+//		int state = Integer.parseInt(map.get("state"));
+//		map.remove("state");
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));
 		List<TFacility> facs = new ArrayList<TFacility>();
 		for(TFacility facility : facilies){
 			//facDto = getDtoFromFacility(facility);
-			if(state==0||facility.getState()==state)
+//			if(state==0||facility.getState()==state)
 				facs.add(facility);
 		}
 		logger.info("Facs:"+JSON.toJSONString(facs));

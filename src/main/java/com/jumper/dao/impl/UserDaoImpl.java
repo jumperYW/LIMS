@@ -74,7 +74,11 @@ public class UserDaoImpl implements UserDao {
 				Iterator it = map.keySet().iterator();
 				while(it.hasNext()){
 					String key = (String)it.next();
-					criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
+					if(key.equals("authority")){
+						criteria.add(Restrictions.like(key, map.get(key)));
+					}else{
+						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
+					}
 				}
 			}
 			criteria.setProjection(null);

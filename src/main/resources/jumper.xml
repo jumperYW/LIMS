@@ -26,7 +26,7 @@
 	<mvc:annotation-driven>
 		<!-- 返回json数据，@response使用 -->
 		<mvc:message-converters register-defaults="true">
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">  
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 		       <property name="supportedMediaTypes">  
 		           <list>
 		               <value>text/plain;charset=UTF-8</value>

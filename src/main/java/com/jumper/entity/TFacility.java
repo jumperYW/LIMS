@@ -1,6 +1,7 @@
 package com.jumper.entity;
 // Generated 2016-4-7 20:04:10 by Hibernate Tools 3.4.0.CR1
 
+import java.util.Arrays;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -207,4 +208,14 @@ public class TFacility implements java.io.Serializable {
 		this.reserve = reserve;
 	}
 
+	@Override
+	public String toString() {
+		return "TFacility [id=" + id + ", facid=" + facid + ", name=" + name + ", productor=" + productor + ", type="
+				+ type + ", director=" + director + ", buydate=" + buydate + ", num=" + num + ", price=" + price
+				+ ", location=" + location + ", state=" + state + ", remark=" + remark + ", image="
+				+ Arrays.toString(image) + ", userId=" + userId + ", reserve=" + reserve + "]";
+	}
+
+	
+	
 }

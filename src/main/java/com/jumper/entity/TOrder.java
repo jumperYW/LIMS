@@ -2,6 +2,7 @@ package com.jumper.entity;
 // Generated 2016-4-7 16:37:47 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,90 +17,105 @@ import javax.persistence.TemporalType;
 @Table(name = "t_order", catalog = "lims")
 public class TOrder implements java.io.Serializable {
 
-	private int id;
-	private int userId;
-	private int facilityId;
-	private int num;
-	private Date lenddate;
-	private int state;
+	private Integer id;
+	private String userId;
+	private String classid;
+	private String facilityId;
+	private Integer classtime;
+	private Integer num;
+	private Date date;
+	private Integer state;
 	private String remark;
 
 	public TOrder() {
 	}
 
-	public TOrder(int id, int userId, int facilityId, int num, Date lenddate, int state) {
+	public TOrder(Integer id, String userId, String classid, String facilityId, Integer classtime, Integer num, Date date,
+			Integer state, String remark) {
+		super();
 		this.id = id;
 		this.userId = userId;
+		this.classid = classid;
 		this.facilityId = facilityId;
+		this.classtime = classtime;
 		this.num = num;
-		this.lenddate = lenddate;
-		this.state = state;
-	}
-
-	public TOrder(int id, int userId, int facilityId, int num, Date lenddate, int state, String remark) {
-		this.id = id;
-		this.userId = userId;
-		this.facilityId = facilityId;
-		this.num = num;
-		this.lenddate = lenddate;
+		this.date = date;
 		this.state = state;
 		this.remark = remark;
 	}
 
-	@Id
 
+	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	@Column(name = "user_id", nullable = false)
-	public int getUserId() {
+	@Column(name = "userid", nullable = false)
+	public String getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
-	@Column(name = "facility_id", nullable = false)
-	public int getFacilityId() {
+	@Column(name = "classid")	
+	public String getClassid() {
+		return classid;
+	}
+
+	public void setClassid(String classid) {
+		this.classid = classid;
+	}
+	
+	@Column(name = "facilityid")
+	public String getFacilityId() {
 		return this.facilityId;
 	}
 
-	public void setFacilityId(int facilityId) {
+	public void setFacilityId(String facilityId) {
 		this.facilityId = facilityId;
 	}
 
-	@Column(name = "num", nullable = false)
-	public int getNum() {
-		return this.num;
+	@Column(name = "classtime")
+	public Integer getClasstime() {
+		return this.classtime;
 	}
 
-	public void setNum(int num) {
+	public void setClasstime(Integer classtime) {
+		this.classtime = classtime;
+	}
+	
+	@Column(name = "num")
+	public Integer getNum() {
+		return num;
+	}
+
+	public void setNum(Integer num) {
 		this.num = num;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "lenddate", nullable = false, length = 19)
-	public Date getLenddate() {
-		return this.lenddate;
+	@Column(name = "date", nullable = false, length = 19)
+	public Date getDate() {
+		return date;
 	}
 
-	public void setLenddate(Date lenddate) {
-		this.lenddate = lenddate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Column(name = "state", nullable = false)
-	public int getState() {
+	public Integer getState() {
 		return this.state;
 	}
 
-	public void setState(int state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
 

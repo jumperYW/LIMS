@@ -1,9 +1,15 @@
 package com.jumper.controller;
 
-import java.util.ArrayList;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,8 +83,62 @@ public class FacilityController {
 			logger.error("更新失败！facid="+fac.getFacid(),e);
 			return "failed";
 		}
+	}	
+	
+	@Autowired private HttpServletRequest request;
+	
+	/**
+	 * 修改设备信息
+	 * @return
+	 */
+	@RequestMapping("/updateFacPost")
+	@ResponseBody
+	public String updateFacPost(){
+		byte[] facByte = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			InputStream in = request.getInputStream();
+			BufferedInputStream bin = new BufferedInputStream(in);
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while(-1!=(len = bin.read(buffer,0,1024))){
+				bos.write(buffer,0,len);
+			}
+			facByte = bos.toByteArray();
+			bin.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} finally{
+			try {
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String facjson = null;
+		try {
+			facjson = new String(facByte,"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		logger.info("修改设备信息facjson:"+facjson);
+		TFacility fac = JSON.parseObject(facjson,TFacility.class);
+		System.out.println(fac.toString());
+		try{
+			facilityService.update(fac);
+			logger.info("更新成功！facid="+fac.getFacid());
+			return "success";
+		} catch(Exception e){
+			logger.error("更新失败！facid="+fac.getFacid(),e);
+			return "failed";
+		}
 	}
 	
+	/**
+	 * 删除设备信息
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/deleteFac")
 	@ResponseBody
 	public String deleteFac(@RequestParam int id){
@@ -112,14 +172,7 @@ public class FacilityController {
 		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));
-		List<TFacility> facs = new ArrayList<TFacility>();
-		for(TFacility facility : facilies){
-			//facDto = getDtoFromFacility(facility);
-//			if(state==0||facility.getState()==state)
-				facs.add(facility);
-		}
-		logger.info("Facs:"+JSON.toJSONString(facs));
-		return JSON.toJSONString(facs);
+		return JSON.toJSONString(facilies);
 	}
 	
 	/**

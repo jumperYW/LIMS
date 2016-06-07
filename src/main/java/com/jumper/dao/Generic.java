@@ -3,8 +3,6 @@ package com.jumper.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.jumper.entity.TFacility;
-
 public interface Generic <T,P> {
 
 	T load(P id);

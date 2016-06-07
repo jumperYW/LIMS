@@ -1,9 +1,15 @@
 package com.jumper.controller;
 
-import java.util.ArrayList;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +84,56 @@ public class UserController {
 		}
 	}
 	
+	@Autowired private HttpServletRequest request;
+	/**
+	 * 修改设备信息
+	 * @return
+	 */
+	@RequestMapping("/updateUserPost")
+	@ResponseBody
+	public String updateUserPost(){
+		byte[] userByte = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			InputStream in = request.getInputStream();
+			BufferedInputStream bin = new BufferedInputStream(in);
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while(-1!=(len = bin.read(buffer,0,1024))){
+				bos.write(buffer,0,len);
+			}
+			userByte = bos.toByteArray();
+			bin.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} finally{
+			try {
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String userjson = null;
+		try {
+			userjson = new String(userByte,"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		logger.info("修改用户信息userjson:"+userjson);
+		TUser user = JSON.parseObject(userjson,TUser.class);
+		user.setCreatetime(new Date());
+		System.out.println(user.toString());
+		try{
+			//userService.update(user);
+			userService.saveOrUpdate(user);
+			logger.info("更新成功！facid="+user.getUserid());
+			return "success";
+		} catch(Exception e){
+			logger.error("更新失败！facid="+user.getUserid(),e);
+			return "failed";
+		}
+	}
+	
 	/**
 	 * 更新用户信息
 	 * @param userjson
@@ -116,16 +172,7 @@ public class UserController {
 		}
 		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TUsers:"+JSON.toJSONString(users));
-//		List<UserDto> userDtos = new ArrayList<UserDto>();
-//		UserDto userDto;
-		List<TUser> userlist = new ArrayList<TUser>();
-		for(TUser user : users){
-//				userDto = getDtoFromUser(user);
-//				userDtos.add(userDto);
-				userlist.add(user);
-		}
-		logger.info("UserDtos:"+JSON.toJSONString(userlist));
-		return JSON.toJSONString(userlist);
+		return JSON.toJSONString(users);
 	}
 	
 	/**

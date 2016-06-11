@@ -90,10 +90,10 @@ public class OrderDaoImpl implements OrderDao{
 					}else if(key.equals("id")||key.equals("state")){
 						criteria.add(Restrictions.eq(key, Integer.parseInt((String) map.get(key))));
 					}else if(key.equals("states")&&map.get(key).equals("now")){
-						List<Integer> sta = new ArrayList<>();
-						sta.add(0);
-						sta.add(1);
-						criteria.add(Restrictions.in("state", sta));
+						List<Integer> state = new ArrayList<Integer>();
+						state.add(0);
+						state.add(1);
+						criteria.add(Restrictions.in("state", state));
 					}
 					else{
 						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));

@@ -174,6 +174,9 @@ public class FacilityController {
 			map.remove("state");
 		}
 		List<TFacility> facilies = facilityService.findPageByCriteria(pageNo, pageSize, map);
+		for(int i=0;i<facilies.size();i++){
+			facilies.get(i).setImage(null);
+		}
 		logger.info("查询成功！TFacilities:"+JSON.toJSONString(facilies));
 		return JSON.toJSONString(facilies);
 	}

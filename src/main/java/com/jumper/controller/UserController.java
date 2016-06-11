@@ -194,6 +194,32 @@ public class UserController {
 	}
 	
 	/**
+	 * 查询用户显示相关(不包含图片)
+	 * @param pageNo  当前页
+	 * @param pageSize  每页数量
+	 * @param mapjson	查询条件
+	 * @return
+	 */
+	@RequestMapping("/getUserListWithOutImage")
+	@ResponseBody
+	public String getUserListWithOutImage(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
+		Map<String, Object> map = null;
+		if(mapjson != null){
+			map = JSON.parseObject(mapjson,Map.class);
+		}
+		logger.info("map:"+map);
+		if(map.get("authority").equals("0")){
+			map.remove("authority");
+		}
+		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);
+		for(int i=0;i<users.size();i++){
+			users.get(i).setImage(null);
+		}
+		logger.info("查询成功！TUsers:"+JSON.toJSONString(users));
+		return JSON.toJSONString(users);
+	}
+	
+	/**
 	 * 查询用户显示相关
 	 * @param pageNo  当前页
 	 * @param pageSize  每页数量

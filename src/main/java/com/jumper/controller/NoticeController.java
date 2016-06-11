@@ -40,9 +40,9 @@ public class NoticeController {
 	 * @param noticejson 公告json
 	 * @return
 	 */
-	@RequestMapping("/createOrder")
+	@RequestMapping("/createNotice")
 	@ResponseBody
-	public String createOrder(@RequestParam String noticejson){
+	public String createNotice(@RequestParam String noticejson){
 		logger.info("创建新订单：facjson:"+noticejson);
 		TNotice notice = JSON.parseObject(noticejson, TNotice.class);
 		try {
@@ -85,7 +85,7 @@ public class NoticeController {
 	@RequestMapping("/getNoticeList")
 	@ResponseBody
 	public String getNoticeList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}

@@ -25,5 +25,5 @@ public interface FacilityService {
 	
 	void flush();
 	
-	List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 }

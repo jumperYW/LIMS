@@ -52,7 +52,7 @@ public class FacilityServiceImpl implements FacilityService{
 		facDao.flush();
 	}
 
-	public List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		return facDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 

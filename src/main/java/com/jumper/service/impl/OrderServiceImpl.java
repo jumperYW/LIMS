@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public List<TOrder> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TOrder> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		return orderDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 

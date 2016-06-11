@@ -74,7 +74,7 @@ public class FeedbackDaoImpl implements FeedbackDao{
 	}
 
 	@Override
-	public List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		List<TFeedback> TFeedbacks = null;
 		try {
 			Criteria criteria = this.getCurrentSession().createCriteria(TFeedback.class);

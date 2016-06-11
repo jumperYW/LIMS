@@ -1,6 +1,5 @@
 package com.jumper.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -105,7 +104,7 @@ public class ClassController {
 	@RequestMapping("/getTClassList")
 	@ResponseBody
 	public String getTClassList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}

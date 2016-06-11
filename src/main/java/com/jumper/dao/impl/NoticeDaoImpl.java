@@ -74,7 +74,7 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		List<TNotice> notices = null;
 		try {
 			Criteria criteria = this.getCurrentSession().createCriteria(TNotice.class);

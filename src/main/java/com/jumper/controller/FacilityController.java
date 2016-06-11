@@ -66,21 +66,24 @@ public class FacilityController {
 	}
 	
 	/**
-	 * 修改设备信息
+	 * 修改设备状态
 	 * @param facjson
 	 * @return
 	 */
-	@RequestMapping("/updateFac")
+	@RequestMapping("/changeFacState")
 	@ResponseBody
 	public String updateFac(@RequestParam String facjson){
-		logger.info("修改设备信息facjson:"+facjson);
+		logger.info("修改设备状态facjson:"+facjson);
 		TFacility fac = JSON.parseObject(facjson,TFacility.class);
+		TFacility facility = facilityService.get(fac.getId());
+		facility.setState(fac.getState());
+//		facility.setNum(fac.getNum());
 		try{
-			facilityService.update(fac);
-			logger.info("更新成功！facid="+fac.getFacid());
+			facilityService.update(facility);
+			logger.info("更新成功！facid="+facility.getFacid());
 			return "success";
 		} catch(Exception e){
-			logger.error("更新失败！facid="+fac.getFacid(),e);
+			logger.error("更新失败！facid="+facility.getFacid(),e);
 			return "failed";
 		}
 	}	
@@ -163,7 +166,7 @@ public class FacilityController {
 	@RequestMapping("/getFacList")
 	@ResponseBody
 	public String getFacList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}

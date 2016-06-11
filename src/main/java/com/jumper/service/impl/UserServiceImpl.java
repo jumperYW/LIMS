@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 		userDao.flush();
 	}
 
-	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map) {
+	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map) {
 		return userDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 

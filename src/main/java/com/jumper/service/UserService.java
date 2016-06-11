@@ -25,7 +25,7 @@ public interface UserService {
 	
 	void flush();
 	
-	List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 	
 
 }

@@ -74,7 +74,7 @@ public class ClassDaoImpl implements ClassDao{
 	}
 
 	@Override
-	public List<TClass> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TClass> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		List<TClass> classes = null;
 		try {
 			Criteria criteria = this.getCurrentSession().createCriteria(TClass.class);

@@ -62,7 +62,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		return noticeDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 

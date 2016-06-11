@@ -44,6 +44,26 @@ public class UserController {
 		return JSON.toJSONString(tuser);
 	}
 	
+	
+	/**
+	 * 删除用户信息
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/deleteUser")
+	@ResponseBody
+	public String deleteFac(@RequestParam int id){
+		logger.info("删除用户,id="+id);
+		try{
+			userService.delete(id);
+			logger.info("删除成功：id="+id);
+			return "success";
+		} catch(Exception e){
+			logger.error("删除失败：id="+id,e);
+			return "failed";
+		}
+	}
+	
 	/**
 	 * 通过id重置用户密码
 	 * @param id 用户id（不是userid）
@@ -56,6 +76,26 @@ public class UserController {
 		if(tuser!=null){
 			logger.info(id+"查询成功！"+JSON.toJSONString(tuser));
 			tuser.setPassword(""+tuser.getUserid());
+			userService.saveOrUpdate(tuser);
+			return "success";
+		}else{
+			logger.warn(id+"查询无结果！");
+			return "failed";
+		}
+	}
+	
+	/**
+	 * 通过id更改用户权限
+	 * @param id 用户id（不是userid）
+	 * @return
+	 */
+	@RequestMapping("/resetAuthority")
+	@ResponseBody
+	public String resetAuthority(@RequestParam int id,@RequestParam byte authority){
+		TUser tuser = userService.get(id);
+		if(tuser!=null){
+			logger.info(id+"查询成功！"+JSON.toJSONString(tuser));
+			tuser.setAuthority(authority);
 			userService.saveOrUpdate(tuser);
 			return "success";
 		}else{
@@ -86,7 +126,7 @@ public class UserController {
 	
 	@Autowired private HttpServletRequest request;
 	/**
-	 * 修改设备信息
+	 * 修改用户信息
 	 * @return
 	 */
 	@RequestMapping("/updateUserPost")
@@ -163,11 +203,12 @@ public class UserController {
 	@RequestMapping("/getUserList")
 	@ResponseBody
 	public String getuserList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
-		if("0".equals(map.get("authority"))){
+		logger.info("map:"+map);
+		if(map.get("authority").equals("0")){
 			map.remove("authority");
 		}
 		List<TUser> users = userService.findPageByCriteria(pageNo, pageSize, map);

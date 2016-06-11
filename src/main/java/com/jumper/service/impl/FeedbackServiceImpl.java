@@ -62,7 +62,7 @@ public class FeedbackServiceImpl implements FeedbackService{
 	}
 
 	@Override
-	public List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		return feedbackDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 	

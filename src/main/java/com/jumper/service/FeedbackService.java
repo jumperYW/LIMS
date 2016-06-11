@@ -25,6 +25,6 @@ public interface FeedbackService {
 	
 	void flush();
 	
-	List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<TFeedback> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 	
 }

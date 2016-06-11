@@ -43,7 +43,7 @@ public class OrderController {
 	@RequestMapping("/createOrder")
 	@ResponseBody
 	public String createOrder(@RequestParam String orderjson){
-		logger.info("创建新订单：facjson:"+orderjson);
+		logger.info("创建新订单：orderjson:"+orderjson);
 		TOrder order = JSON.parseObject(orderjson, TOrder.class);
 		try {
 			orderService.save(order);
@@ -85,13 +85,15 @@ public class OrderController {
 	@RequestMapping("/getOrderList")
 	@ResponseBody
 	public String getOrderList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}
-		if("0".equals(map.get("state"))){
+		if("5".equals(map.get("state"))){
 			map.remove("state");
 		}
+		logger.info("mapjson:"+mapjson);
+		logger.info("map:"+map);
 		List<TOrder> orders = orderService.findPageByCriteria(pageNo, pageSize, map);
 		logger.info("查询成功！TOrders:"+JSON.toJSONString(orders));
 		return JSON.toJSONString(orders);

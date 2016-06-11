@@ -64,7 +64,7 @@ public class ClassServiceImpl implements ClassService{
 	}
 
 	@Override
-	public List<TClass> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TClass> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		return classDao.findPageByCriteria(pageNo, pageSize, map);
 	}
 

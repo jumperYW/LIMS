@@ -25,6 +25,6 @@ public interface NoticeService {
 	
 	void flush();
 	
-	List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<TNotice> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 	
 }

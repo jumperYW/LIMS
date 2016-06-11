@@ -1,10 +1,13 @@
 package com.jumper.entity;
 // Generated 2016-4-7 16:37:47 by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,7 +21,7 @@ import javax.persistence.TemporalType;
 public class TOrder implements java.io.Serializable {
 
 	private Integer id;
-	private String userId;
+	private String userid;
 	private String classid;
 	private String facilityId;
 	private Integer classtime;
@@ -30,11 +33,11 @@ public class TOrder implements java.io.Serializable {
 	public TOrder() {
 	}
 
-	public TOrder(Integer id, String userId, String classid, String facilityId, Integer classtime, Integer num, Date date,
+	public TOrder(Integer id, String userid, String classid, String facilityId, Integer classtime, Integer num, Date date,
 			Integer state, String remark) {
 		super();
 		this.id = id;
-		this.userId = userId;
+		this.userid = userid;
 		this.classid = classid;
 		this.facilityId = facilityId;
 		this.classtime = classtime;
@@ -46,6 +49,8 @@ public class TOrder implements java.io.Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	
 	@Column(name = "id", unique = true, nullable = false)
 	public Integer getId() {
 		return this.id;
@@ -56,12 +61,12 @@ public class TOrder implements java.io.Serializable {
 	}
 
 	@Column(name = "userid", nullable = false)
-	public String getUserId() {
-		return this.userId;
+	public String getUserid() {
+		return this.userid;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
 
 	@Column(name = "classid")	

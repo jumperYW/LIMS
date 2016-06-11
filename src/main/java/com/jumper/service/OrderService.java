@@ -25,6 +25,6 @@ public interface OrderService {
 	
 	void flush();
 	
-	List<TOrder> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<TOrder> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 	
 }

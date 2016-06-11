@@ -66,7 +66,7 @@ public class UserDaoImpl implements UserDao {
 		this.getCurrentSession().flush();
 	}
 
-	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map) {
+	public List<TUser> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map) {
 		List<TUser> users = null;
 		try {
 			Criteria criteria = this.getCurrentSession().createCriteria(TUser.class);
@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 				while(it.hasNext()){
 					String key = (String)it.next();
 					if(key.equals("authority")){
-						criteria.add(Restrictions.eq(key, Byte.parseByte(map.get(key))));
+						criteria.add(Restrictions.eq(key, Byte.parseByte((String) map.get(key))));
 					}else{
 						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
 					}

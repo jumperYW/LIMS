@@ -65,11 +65,11 @@ public class TFeedback implements Serializable{
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "createtime", nullable = false, length = 19)
-	public Date getCreattime() {
+	public Date getCreatetime() {
 		return createtime;
 	}
 
-	public void setCreattime(Date createtime) {
+	public void setCreatetime(Date createtime) {
 		this.createtime = createtime;
 	}
 	

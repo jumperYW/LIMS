@@ -85,7 +85,7 @@ public class FeedbackController {
 	@RequestMapping("/getFeedbackList")
 	@ResponseBody
 	public String getFeedbackList(@RequestParam int pageNo,@RequestParam int pageSize,@RequestParam String mapjson){
-		Map<String, String> map = null;
+		Map<String, Object> map = null;
 		if(mapjson != null){
 			map = JSON.parseObject(mapjson,Map.class);
 		}

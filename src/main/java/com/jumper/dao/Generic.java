@@ -23,6 +23,6 @@ public interface Generic <T,P> {
 	
 	void flush();
 	
-	List<T> findPageByCriteria(int pageNo, int pageSize, Map<String,String> map);
+	List<T> findPageByCriteria(int pageNo, int pageSize, Map<String,Object> map);
 	
 }

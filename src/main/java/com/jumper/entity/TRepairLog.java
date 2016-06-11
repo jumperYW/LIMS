@@ -1,9 +1,12 @@
 package com.jumper.entity;
 // Generated 2016-4-7 16:37:47 by Hibernate Tools 3.4.0.CR1
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -45,7 +48,8 @@ public class TRepairLog implements java.io.Serializable {
 	}
 
 	@Id
-
+	@GeneratedValue(strategy = IDENTITY)
+	
 	@Column(name = "id", unique = true, nullable = false)
 	public int getId() {
 		return this.id;

@@ -64,7 +64,7 @@ public class FacilityDaoImpl implements FacilityDao{
 		this.getCurrentSession().flush();
 	}
 
-	public List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String, String> map) {
+	public List<TFacility> findPageByCriteria(int pageNo, int pageSize, Map<String, Object> map) {
 		List<TFacility> facilities = null;
 		try {
 			Criteria criteria = this.getCurrentSession().createCriteria(TFacility.class);
@@ -73,7 +73,7 @@ public class FacilityDaoImpl implements FacilityDao{
 				while(it.hasNext()){
 					String key = (String)it.next();
 					if(key.equals("state")){
-						criteria.add(Restrictions.eq(key, Integer.parseInt(map.get(key))));
+						criteria.add(Restrictions.eq(key, Integer.parseInt((String) map.get(key))));
 					}else{
 						criteria.add(Restrictions.like(key, "%"+map.get(key)+"%"));
 					}

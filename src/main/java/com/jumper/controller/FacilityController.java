@@ -45,6 +45,53 @@ public class FacilityController {
 	}
 	
 	/**
+	 * 修改设备信息
+	 * @return
+	 */
+	@RequestMapping("/createFacPost")
+	@ResponseBody
+	public String createFacPost(){
+		byte[] facByte = null;
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		try {
+			InputStream in = request.getInputStream();
+			BufferedInputStream bin = new BufferedInputStream(in);
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while(-1!=(len = bin.read(buffer,0,1024))){
+				bos.write(buffer,0,len);
+			}
+			facByte = bos.toByteArray();
+			bin.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		} finally{
+			try {
+				bos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		String facjson = null;
+		try {
+			facjson = new String(facByte,"utf-8");
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		logger.info("新增设备信息facjson:"+facjson);
+		TFacility fac = JSON.parseObject(facjson,TFacility.class);
+		System.out.println(fac.toString());
+		try{
+			facilityService.save(fac);
+			logger.info("新增成功！facid="+fac.getFacid());
+			return "success";
+		} catch(Exception e){
+			logger.error("新增失败！facid="+fac.getFacid(),e);
+			return "failed";
+		}
+	}
+	
+	/**
 	 * 新增设备
 	 * @param facjson 设备json
 	 * @return
